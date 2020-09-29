@@ -6,7 +6,6 @@ import io.chrisdima.supergameoflife.datastores.Datastore;
 import io.chrisdima.supergameoflife.datastores.InMemory;
 import io.chrisdima.supergameoflife.strand.Segment;
 import io.chrisdima.supergameoflife.strand.Strand;
-import java.util.Arrays;
 import java.util.Random;
 import java.util.stream.Stream;
 
@@ -23,13 +22,17 @@ public class Utils {
     return getRandomThing(random.nextInt(), initialEnergy);
   }
 
-  public static Thing getRandomThing(int numberOfSegments, int initialEnergy){
+  public static Thing getRandomThing(int numberOfSegments, int initialEnergy) {
+    return getRandomThing(numberOfSegments, null, initialEnergy);
+  }
+
+  public static Thing getRandomThing(int numberOfSegments, Point location, int initialEnergy){
 
     Random random = new Random();;
     Segment[] segments = Stream.generate(
         () -> new Segment(random.nextInt(), random.nextInt()))
         .limit(numberOfSegments)
         .toArray(Segment[]::new);
-    return new Thing(new Strand(segments), null, initialEnergy);
+    return new Thing(new Strand(segments), location, initialEnergy);
   }
 }
