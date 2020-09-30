@@ -25,8 +25,14 @@ public class InMemory implements Datastore {
     return space.get(flatAddress(point));
   }
 
+  public void set(Thing thing) throws Exception{
+    if(thing.getLocation() == null)
+      throw new Exception("thing.location == null");
+    set(thing.getLocation(), thing);
+  }
+
   @Override
-  public void set(Point point, Thing thing){
+  public void set(Point point, Thing thing) {
     space.put(flatAddress(point), thing);
   }
 

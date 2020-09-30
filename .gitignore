@@ -5,5 +5,5 @@
 .vscode/
 target/
 
-vertx-fun.iml
+super-game-of-life.iml
 /.factorypath

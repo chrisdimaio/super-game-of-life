@@ -7,13 +7,11 @@ public class StandardInstructionSet implements InstructionSet {
 
   @Override
   public void call(Thing thing, Datastore datastore){
-//    System.out.println(thing.getEnergy());
-//    System.out.println(thing.getStrand().getNextSegment());
     System.out.println(thing.getStrand().getNextSegment().getInstruction());
   }
 
   @Override
   public int indexingHash(int instruction){
-    return instruction;
+    return instruction % Byte.MAX_VALUE;
   }
 }
