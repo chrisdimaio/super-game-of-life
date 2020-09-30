@@ -10,12 +10,14 @@ public class Thing {
   private final int energy;
 
   @Setter
+  private int id;
   private Point location;
 
-  public Thing(Strand strand, Point location, int energy){
+  public Thing(Strand strand, Point location, int energy, int id){
     this.strand = strand;
     this.location = location;
     this.energy = energy;
+    this.id = id;
   }
 
   @Override

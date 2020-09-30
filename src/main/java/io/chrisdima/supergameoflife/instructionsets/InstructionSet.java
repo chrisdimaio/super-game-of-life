@@ -11,5 +11,5 @@ public interface InstructionSet {
    */
   int indexingHash(int instruction);
 
-  void call(Thing thing, Datastore datastore);
+  String call(Thing thing, Datastore datastore);
 }

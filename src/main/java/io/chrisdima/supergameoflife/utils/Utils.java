@@ -10,16 +10,19 @@ import java.util.Random;
 import java.util.stream.Stream;
 
 public class Utils {
-  static final int MAX_NUMBER_OF_SEGMENTS = 100;
+  private static final int MAX_NUMBER_OF_SEGMENTS = 100;
+
+  // Counter used to assign unique ids to Things.
+  private static int counter = 0;
 
   public static Thing getRandomThing(){
     Random random = new Random();
-    return getRandomThing(random.nextInt(MAX_NUMBER_OF_SEGMENTS), random.nextInt());
+    return getRandomThing(random.nextInt(MAX_NUMBER_OF_SEGMENTS) + 1, random.nextInt());
   }
 
   public static Thing getRandomThing(int initialEnergy){
     Random random = new Random();
-    return getRandomThing(random.nextInt(), initialEnergy);
+    return getRandomThing(random.nextInt(1), initialEnergy);
   }
 
   public static Thing getRandomThing(int numberOfSegments, int initialEnergy) {
@@ -33,6 +36,6 @@ public class Utils {
         () -> new Segment(random.nextInt(), random.nextInt()))
         .limit(numberOfSegments)
         .toArray(Segment[]::new);
-    return new Thing(new Strand(segments), location, initialEnergy);
+    return new Thing(new Strand(segments), location, initialEnergy, counter++);
   }
 }
