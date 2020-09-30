@@ -2,7 +2,7 @@ package io.chrisdima.supergameoflife.distributionstrategies;
 
 import io.chrisdima.supergameoflife.Point;
 
-public class DefaultStrategy implements Strategy {
+public class DefaultStrategy implements DistributionStrategy {
   private int length, width, depth;
   private int counter = 0;
   private int x, y, z = 0;

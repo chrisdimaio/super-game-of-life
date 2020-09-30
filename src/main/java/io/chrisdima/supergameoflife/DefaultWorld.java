@@ -1,6 +1,7 @@
 package io.chrisdima.supergameoflife;
 
 import io.chrisdima.supergameoflife.datastores.Datastore;
+import java.util.ArrayList;
 
 public class DefaultWorld implements World {
   private Datastore datastore;
@@ -18,5 +19,10 @@ public class DefaultWorld implements World {
   @Override
   public boolean die(Thing thing) {
     return false;
+  }
+
+  @Override
+  public ArrayList<Thing> getNeighbors(Thing thing) {
+    return null;
   }
 }
