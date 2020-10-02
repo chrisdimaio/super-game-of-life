@@ -33,6 +33,7 @@ public abstract class BaseInstructionSet {
         instructionMap
             .get(key)
             .invoke(this, (Object[]) null);
+        System.out.println(instructionMap.get(key).getName());
       } catch (IllegalAccessException | InvocationTargetException e) {
         e.printStackTrace();
       }

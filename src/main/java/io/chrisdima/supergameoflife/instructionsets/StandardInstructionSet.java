@@ -20,12 +20,14 @@ public class StandardInstructionSet extends BaseInstructionSet implements Instru
   }
 
   @Instruction
-  public void anInstruction(){
-    System.out.println("anInstruction");
-  }
+  public void anInstruction(){}
 
   @Instruction
-  public void anotherInstruction(){
-    System.out.println("anotherInstruction");
-  }
+  public void anotherInstruction(){}
+
+  @Instruction
+  public void doSomething(){}
+
+  @Instruction
+  public void somethingElse(){}
 }

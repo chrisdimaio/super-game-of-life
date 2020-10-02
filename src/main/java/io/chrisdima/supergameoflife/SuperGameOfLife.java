@@ -11,7 +11,6 @@ import javafx.scene.shape.Box;
 public class SuperGameOfLife {
 
   public static void main(String[] args) throws Exception {
-//    UI.run();
     DefaultStrategy strategy = new DefaultStrategy();
     strategy.setDimensions(100, 100, 100);
     DefaultGame game = new DefaultGame();
