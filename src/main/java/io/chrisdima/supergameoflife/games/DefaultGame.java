@@ -13,8 +13,7 @@ public class DefaultGame extends BaseGame {
   @Override
   public void play() {
     datastore.things().forEach(t -> {
-      String result = instructionSet.call(t, datastore);
-      System.out.println("result: " + result);
+      instructionSet.call(t, datastore);
     });
   }
 }

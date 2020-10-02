@@ -11,14 +11,14 @@ import javafx.scene.shape.Box;
 public class SuperGameOfLife {
 
   public static void main(String[] args) throws Exception {
-    UI.run();
-//    DefaultStrategy strategy = new DefaultStrategy();
-//    strategy.setDimensions(100, 100, 100);
-//    DefaultGame game = new DefaultGame();
-//        game.withDataStore(new InMemory(100, 100, 100))
-//        .withDistributionStrategy(strategy)
-//        .withInstructionSet(new StandardInstructionSet());
-//    game.init();
-//    game.play();
+//    UI.run();
+    DefaultStrategy strategy = new DefaultStrategy();
+    strategy.setDimensions(100, 100, 100);
+    DefaultGame game = new DefaultGame();
+        game.withDataStore(new InMemory(100, 100, 100))
+        .withDistributionStrategy(strategy)
+        .withInstructionSet(new StandardInstructionSet());
+    game.init();
+    game.play();
   }
 }
