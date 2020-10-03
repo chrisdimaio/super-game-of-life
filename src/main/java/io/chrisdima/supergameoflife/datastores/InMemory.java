@@ -21,12 +21,12 @@ public class InMemory implements Datastore {
 
   @Override
   public boolean exists(Point point) {
-    return buffer.containsKey(flatAddress(point));
+    return buffer.containsKey(flattenAddress(point));
   }
 
   @Override
   public Object get(Point point) {
-    return buffer.get(flatAddress(point));
+    return buffer.get(flattenAddress(point));
   }
 
   public void set(Thing thing) throws Exception{
@@ -37,7 +37,7 @@ public class InMemory implements Datastore {
 
   @Override
   public void set(Point point, Thing thing) {
-    buffer.put(flatAddress(point), thing);
+    buffer.put(flattenAddress(point), thing);
   }
 
   @Override
@@ -45,7 +45,7 @@ public class InMemory implements Datastore {
     return buffer.values();
   }
 
-  private int flatAddress(Point point){
+  private int flattenAddress(Point point){
     return point.getXInt() + dimensions.getWidth() * (point.getYInt() +
         dimensions.getDepth() * point.getZInt());
   }
