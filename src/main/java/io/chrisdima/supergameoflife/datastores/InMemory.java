@@ -8,25 +8,25 @@ import java.util.HashMap;
 import lombok.Getter;
 
 public class InMemory implements Datastore {
-  private final HashMap<Integer, Thing> space;
+  private final HashMap<Integer, Thing> buffer;
 
   @Getter
   private final Dimensions dimensions;
 
   public InMemory(Dimensions dimensions){
     this.dimensions = dimensions;
-    this.space = new HashMap<>(dimensions.getLength() * dimensions.getWidth() *
+    this.buffer = new HashMap<>(dimensions.getLength() * dimensions.getWidth() *
         dimensions.getDepth());
   }
 
   @Override
   public boolean exists(Point point) {
-    return space.containsKey(flatAddress(point));
+    return buffer.containsKey(flatAddress(point));
   }
 
   @Override
   public Object get(Point point) {
-    return space.get(flatAddress(point));
+    return buffer.get(flatAddress(point));
   }
 
   public void set(Thing thing) throws Exception{
@@ -37,12 +37,12 @@ public class InMemory implements Datastore {
 
   @Override
   public void set(Point point, Thing thing) {
-    space.put(flatAddress(point), thing);
+    buffer.put(flatAddress(point), thing);
   }
 
   @Override
   public Collection<Thing> things(){
-    return space.values();
+    return buffer.values();
   }
 
   private int flatAddress(Point point){
