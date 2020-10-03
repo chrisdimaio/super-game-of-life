@@ -3,8 +3,6 @@ package io.chrisdima.supergameoflife.instructionsets;
 import io.chrisdima.supergameoflife.Thing;
 import io.chrisdima.supergameoflife.annotations.Instruction;
 import io.chrisdima.supergameoflife.datastores.Datastore;
-import java.util.HashMap;
-import java.util.Map;
 
 public class StandardInstructionSet extends BaseInstructionSet implements InstructionSet {
 

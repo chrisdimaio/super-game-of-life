@@ -1,5 +1,6 @@
 package io.chrisdima.supergameoflife.datastores;
 
+import io.chrisdima.supergameoflife.Dimensions;
 import io.chrisdima.supergameoflife.Point;
 import io.chrisdima.supergameoflife.Thing;
 import java.util.Collection;
@@ -7,12 +8,12 @@ import java.util.HashMap;
 
 public class InMemory implements Datastore {
   private final HashMap<Integer, Thing> space;
-  private final int width, depth;
+  private final Dimensions dimensions;
 
-  public InMemory(int length, int width, int depth){
-    this.width = width;
-    this.depth = depth;
-    this.space = new HashMap<>(length * width * depth);
+  public InMemory(Dimensions dimensions){
+    this.dimensions = dimensions;
+    this.space = new HashMap<>(dimensions.getLength() * dimensions.getWidth() *
+        dimensions.getDepth());
   }
 
   @Override
@@ -42,6 +43,7 @@ public class InMemory implements Datastore {
   }
 
   private int flatAddress(Point point){
-    return point.getXInt() + this.width * (point.getYInt() + this.depth * point.getZInt());
+    return point.getXInt() + dimensions.getWidth() * (point.getYInt() +
+        dimensions.getDepth() * point.getZInt());
   }
 }
