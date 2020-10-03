@@ -6,8 +6,9 @@ public class DefaultGame extends BaseGame {
 
   @Override
   public void init(){
-    for(int i = 0; i < 1000; i++)
-      datastore.set(distributionStrategy.createPoint(), Utils.getRandomThing());
+    for(int i = 0; i < datastore.getDimensions().getVolume(); i++)
+      datastore.set(distributionStrategy.createSpot(datastore.getDimensions()),
+          Utils.getRandomThing());
   }
 
   @Override

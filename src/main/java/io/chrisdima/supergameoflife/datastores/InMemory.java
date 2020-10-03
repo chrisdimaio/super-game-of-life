@@ -5,9 +5,12 @@ import io.chrisdima.supergameoflife.Point;
 import io.chrisdima.supergameoflife.Thing;
 import java.util.Collection;
 import java.util.HashMap;
+import lombok.Getter;
 
 public class InMemory implements Datastore {
   private final HashMap<Integer, Thing> space;
+
+  @Getter
   private final Dimensions dimensions;
 
   public InMemory(Dimensions dimensions){

@@ -5,6 +5,5 @@ import io.chrisdima.supergameoflife.Point;
 
 public interface DistributionStrategy {
 
-  public Point createPoint();
-  public void setDimensions(Dimensions dimensions);
+  public Point createSpot(Dimensions dimensions);
 }

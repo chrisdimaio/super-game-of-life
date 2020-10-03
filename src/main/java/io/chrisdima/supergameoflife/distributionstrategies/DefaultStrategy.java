@@ -8,12 +8,8 @@ public class DefaultStrategy implements DistributionStrategy {
   private int counter = 0;
   private int x, y, z = 0;
 
-  public void setDimensions(Dimensions dimensions){
-    this.dimensions = dimensions;
-  }
-
   @Override
-  public Point createPoint() {
+  public Point createSpot(Dimensions dimensions) {
     switch (counter++ % 3){
       case 0:
         if(x == dimensions.getWidth() - 1)

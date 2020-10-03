@@ -1,5 +1,6 @@
 package io.chrisdima.supergameoflife.instructionsets;
 
+import io.chrisdima.supergameoflife.Thing;
 import io.chrisdima.supergameoflife.annotations.Instruction;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -27,7 +28,7 @@ public abstract class BaseInstructionSet {
     return instructionMap.size();
   }
 
-  protected void invoke(int key){
+  protected void invoke(Thing thing, int key){
     if(instructionMap.containsKey(key)) {
       try {
         instructionMap

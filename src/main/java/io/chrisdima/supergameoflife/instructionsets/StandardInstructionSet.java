@@ -8,8 +8,9 @@ public class StandardInstructionSet extends BaseInstructionSet implements Instru
 
   @Override
   public void call(Thing thing, Datastore datastore){
-    invoke(indexingHash(thing.getStrand().getNextSegment().getInstruction()));
-    invoke(0);
+    if(instructionCount() > 0) {
+      invoke(thing, indexingHash(thing.getStrand().getNextSegment().getInstruction()));
+    }
   }
 
   @Override
@@ -18,14 +19,8 @@ public class StandardInstructionSet extends BaseInstructionSet implements Instru
   }
 
   @Instruction
-  public void anInstruction(){}
+  public void mutate() {
 
-  @Instruction
-  public void anotherInstruction(){}
+  }
 
-  @Instruction
-  public void doSomething(){}
-
-  @Instruction
-  public void somethingElse(){}
 }
