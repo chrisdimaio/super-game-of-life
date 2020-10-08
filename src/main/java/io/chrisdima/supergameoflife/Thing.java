@@ -23,6 +23,6 @@ public class Thing {
 
   @Override
   public String toString(){
-    return "{ strand: " + strand + ", energy: " + energy + " }";
+    return "{ strand: " + strand + ", energy: " + energy + ", location: " + location + " }";
   }
 }

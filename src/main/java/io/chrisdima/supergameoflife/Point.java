@@ -19,4 +19,9 @@ public class Point extends Point3D {
   public int getZInt(){
     return (int) this.getZ();
   }
+
+  @Override
+  public String toString(){
+    return "{ x: " + getXInt() + ", y: " + getYInt() + ", z: " + getZInt() + " }";
+  }
 }

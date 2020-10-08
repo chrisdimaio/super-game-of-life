@@ -22,8 +22,10 @@ public class StandardInstructionSet extends BaseInstructionSet implements Instru
 
   @Instruction
   public void move(Thing thing, Datastore datastore) {
-    Point location = thing.getLocation();
-    thing.setLocation(thing.getLocation());
+    Point locationA = thing.getLocation();
+    Point locationB = new Point(locationA.getX(), locationA.getY(), locationA.getZ() + 1);
+    thing.setLocation(locationB);
     datastore.set(thing.getLocation(), thing);
+    datastore.remove(locationA);
   }
 }
