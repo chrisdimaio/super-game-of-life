@@ -7,18 +7,20 @@ import lombok.Setter;
 @Getter
 public class Thing {
   private final Strand strand;
-  private final int energy;
 
   @Setter
   private int id;
   @Setter
+  private int energy;
+
+  @Setter
   private Point location;
 
-  public Thing(Strand strand, Point location, int energy, int id){
+  public Thing(Strand strand, Point location, int id){
     this.strand = strand;
     this.location = location;
-    this.energy = energy;
     this.id = id;
+    this.energy = 0;
   }
 
   @Override

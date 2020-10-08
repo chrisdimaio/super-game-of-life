@@ -1,7 +1,7 @@
 package io.chrisdima.supergameoflife.instructionsets;
 
 import io.chrisdima.supergameoflife.Thing;
-import io.chrisdima.supergameoflife.datastores.Datastore;
+import io.chrisdima.supergameoflife.worlds.World;
 
 public interface InstructionSet {
   /**
@@ -11,5 +11,5 @@ public interface InstructionSet {
    */
   int indexingHash(int instruction);
 
-  void call(Thing thing, Datastore datastore);
+  void call(Thing thing, World world);
 }

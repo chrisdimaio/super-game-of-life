@@ -10,7 +10,7 @@ import lombok.Getter;
 
 public class InMemory implements Datastore {
   private final HashMap<Integer, Thing> buffer;
-  private final Iterator<Thing> iterator;
+  private final HashMap<Object, Object> worldData;
 
   @Getter
   private final Dimensions dimensions;
@@ -19,7 +19,13 @@ public class InMemory implements Datastore {
     this.dimensions = dimensions;
     this.buffer = new HashMap<>(dimensions.getLength() * dimensions.getWidth() *
         dimensions.getDepth());
-    this.iterator = this.buffer.values().iterator();
+    this.worldData = new HashMap<>();
+  }
+
+  @Override
+  public void move(Point from, Point to, Thing thing) {
+    this.set(to, thing);
+    this.remove(from);
   }
 
   @Override
@@ -40,6 +46,16 @@ public class InMemory implements Datastore {
   @Override
   public void remove(Point point) {
     buffer.remove(flattenAddress(point));
+  }
+
+  @Override
+  public Object getWorldData(Object key) {
+    return worldData.get(key);
+  }
+
+  @Override
+  public void setWorldData(Object key, Object value) {
+    worldData.put(key, value);
   }
 
   @Override
