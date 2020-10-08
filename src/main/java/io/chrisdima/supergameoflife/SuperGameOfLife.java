@@ -9,7 +9,7 @@ public class SuperGameOfLife {
 
   public static void main(String[] args) throws Exception {
     DefaultGame game = new DefaultGame();
-    game.setDatastore(new InMemory(new Dimensions(100, 100, 100)));
+    game.setDatastore(new InMemory(new Dimensions(2, 2, 2)));
     game.setDistributionStrategy(new DefaultStrategy());
     game.setInstructionSet(new StandardInstructionSet());
     game.init();

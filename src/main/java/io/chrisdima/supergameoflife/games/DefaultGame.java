@@ -1,5 +1,6 @@
 package io.chrisdima.supergameoflife.games;
 
+import io.chrisdima.supergameoflife.Thing;
 import io.chrisdima.supergameoflife.utils.Utils;
 
 public class DefaultGame extends BaseGame {

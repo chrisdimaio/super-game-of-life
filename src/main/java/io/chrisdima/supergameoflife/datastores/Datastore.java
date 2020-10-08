@@ -12,4 +12,5 @@ public interface Datastore {
   void set(Point point, Thing thing);
   Collection<Thing> things();
   Dimensions getDimensions();
+  void remove(Point point);
 }

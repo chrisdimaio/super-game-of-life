@@ -11,6 +11,7 @@ public class Thing {
 
   @Setter
   private int id;
+  @Setter
   private Point location;
 
   public Thing(Strand strand, Point location, int energy, int id){

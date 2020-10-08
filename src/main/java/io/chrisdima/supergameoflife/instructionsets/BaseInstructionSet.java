@@ -2,6 +2,7 @@ package io.chrisdima.supergameoflife.instructionsets;
 
 import io.chrisdima.supergameoflife.Thing;
 import io.chrisdima.supergameoflife.annotations.Instruction;
+import io.chrisdima.supergameoflife.datastores.Datastore;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.HashMap;
@@ -28,13 +29,12 @@ public abstract class BaseInstructionSet {
     return instructionMap.size();
   }
 
-  protected void invoke(Thing thing, int key){
+  protected void invoke(int key, Thing thing, Datastore datastore){
     if(instructionMap.containsKey(key)) {
       try {
         instructionMap
             .get(key)
-            .invoke(this, (Object[]) null);
-        System.out.println(instructionMap.get(key).getName());
+            .invoke(this, thing, datastore);
       } catch (IllegalAccessException | InvocationTargetException e) {
         e.printStackTrace();
       }

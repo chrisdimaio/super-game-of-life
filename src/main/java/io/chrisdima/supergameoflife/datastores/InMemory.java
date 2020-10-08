@@ -29,6 +29,11 @@ public class InMemory implements Datastore {
     return buffer.get(flattenAddress(point));
   }
 
+  @Override
+  public void remove(Point point) {
+    buffer.remove(flattenAddress(point));
+  }
+
   public void set(Thing thing) throws Exception{
     if(thing.getLocation() == null)
       throw new Exception("thing.location == null");
@@ -37,6 +42,7 @@ public class InMemory implements Datastore {
 
   @Override
   public void set(Point point, Thing thing) {
+    thing.setLocation(point);
     buffer.put(flattenAddress(point), thing);
   }
 

@@ -1,5 +1,6 @@
 package io.chrisdima.supergameoflife.instructionsets;
 
+import io.chrisdima.supergameoflife.Point;
 import io.chrisdima.supergameoflife.Thing;
 import io.chrisdima.supergameoflife.annotations.Instruction;
 import io.chrisdima.supergameoflife.datastores.Datastore;
@@ -9,7 +10,8 @@ public class StandardInstructionSet extends BaseInstructionSet implements Instru
   @Override
   public void call(Thing thing, Datastore datastore){
     if(instructionCount() > 0) {
-      invoke(thing, indexingHash(thing.getStrand().getNextSegment().getInstruction()));
+      int key = indexingHash(thing.getStrand().getNextSegment().getInstruction());
+      invoke(key, thing, datastore);
     }
   }
 
@@ -19,8 +21,9 @@ public class StandardInstructionSet extends BaseInstructionSet implements Instru
   }
 
   @Instruction
-  public void mutate() {
-
+  public void move(Thing thing, Datastore datastore) {
+    Point location = thing.getLocation();
+    thing.setLocation(thing.getLocation());
+    datastore.set(thing.getLocation(), thing);
   }
-
 }
