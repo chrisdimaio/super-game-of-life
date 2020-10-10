@@ -40,6 +40,6 @@ public class Utils {
         () -> new Segment(random.nextInt(), random.nextInt()))
         .limit(numberOfSegments)
         .toArray(Segment[]::new);
-    return world.createThing(new Strand(segments), location, initialEnergy, counter++);
+    return world.createThing(new Strand(segments), location, initialEnergy);
   }
 }

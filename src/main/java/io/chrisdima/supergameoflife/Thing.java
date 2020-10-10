@@ -1,6 +1,7 @@
 package io.chrisdima.supergameoflife;
 
 import io.chrisdima.supergameoflife.strand.Strand;
+import java.util.UUID;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,14 +10,14 @@ public class Thing {
   private final Strand strand;
 
   @Setter
-  private int id;
+  private UUID id;
   @Setter
   private int energy;
 
   @Setter
   private Point location;
 
-  public Thing(Strand strand, Point location, int id){
+  public Thing(Strand strand, Point location, UUID id){
     this.strand = strand;
     this.location = location;
     this.id = id;
@@ -25,6 +26,11 @@ public class Thing {
 
   @Override
   public String toString(){
-    return "{ strand: " + strand + ", energy: " + energy + ", location: " + location + " }";
+    return "{ " +
+        "strand: " + strand +
+        ", energy: " + energy +
+        ", location: " + location +
+        ", id: " + id +
+        " }";
   }
 }

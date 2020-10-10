@@ -7,7 +7,10 @@ import io.chrisdima.supergameoflife.datastores.Datastore;
 import io.chrisdima.supergameoflife.strand.Strand;
 import java.util.ArrayList;
 
-public class DefaultWorld implements World {
+import java.util.UUID;
+
+public class DefaultWorld implements World, WorldAPI {
+  private static final int FIXED_COST = 100;
   private static final String WORLD_DATA_ENERGY = "energy";
   private Datastore datastore;
 
@@ -35,17 +38,20 @@ public class DefaultWorld implements World {
 
   @Override
   public void move(Point from, Point to, Thing thing, int cost) {
+    chargeFixedCost(thing);
     accountForEnergy(thing, -cost);
     datastore.move(from, to, thing);
   }
 
   @Override
   public boolean die(Thing thing) {
+    chargeFixedCost(thing);
     return false;
   }
 
   @Override
   public ArrayList<Thing> getNeighbors(Thing thing) {
+    chargeFixedCost(thing);
     return null;
   }
 
@@ -55,8 +61,8 @@ public class DefaultWorld implements World {
   }
 
   @Override
-  public Thing createThing(Strand strand, Point location, int energy, int id) {
-    Thing thing = new Thing(strand, location, id);
+  public Thing createThing(Strand strand, Point location, int energy) {
+    Thing thing = new Thing(strand, location, UUID.randomUUID());
     accountForEnergy(thing, energy);
     return thing;
   }
@@ -71,9 +77,13 @@ public class DefaultWorld implements World {
    * @param thing The thing to who's energy change will be accounted for.
    * @param energyChange A positive or negative energy change.
    */
-  private void accountForEnergy(Thing thing, int energyChange){
+  private void accountForEnergy(Thing thing, int energyChange) {
     thing.setEnergy(thing.getEnergy() + energyChange);
     setEnergy(getEnergy() - energyChange);
+  }
+
+  private void chargeFixedCost(Thing thing) {
+    accountForEnergy(thing, FIXED_COST);
   }
 
   private int getEnergy() {

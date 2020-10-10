@@ -7,16 +7,17 @@ import io.chrisdima.supergameoflife.datastores.Datastore;
 import io.chrisdima.supergameoflife.strand.Segment;
 import io.chrisdima.supergameoflife.strand.Strand;
 import io.chrisdima.supergameoflife.worlds.World;
+import io.chrisdima.supergameoflife.worlds.WorldAPI;
 
 public class StandardInstructionSet extends BaseInstructionSet implements InstructionSet {
 
   @Override
-  public void call(Thing thing, World world){
+  public void call(Thing thing, WorldAPI worldAPI){
     if(instructionCount() > 0) {
       Segment nextSegment = thing.getStrand().getNextSegment();
       int payload = nextSegment.getPayload();
       int key = indexingHash(nextSegment.getInstruction());
-      invoke(key, thing, world, payload);
+      invoke(key, thing, worldAPI, payload);
     }
   }
 
@@ -26,9 +27,9 @@ public class StandardInstructionSet extends BaseInstructionSet implements Instru
   }
 
   @Instruction
-  public void move(Thing thing, World world, int payload) {
+  public void move(Thing thing, WorldAPI worldAPI, int payload) {
     Point locationA = thing.getLocation();
     Point locationB = new Point(locationA.getX(), locationA.getY(), locationA.getZ() + 1);
-    world.move(locationA, locationB, thing, payload);
+    worldAPI.move(locationA, locationB, thing, payload);
   }
 }

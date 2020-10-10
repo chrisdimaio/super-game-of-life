@@ -8,12 +8,11 @@ import io.chrisdima.supergameoflife.strand.Strand;
 import java.util.ArrayList;
 
 public interface World {
-  public void setDatastore(Datastore datastore);
-  public void move(Point from, Point to, Thing thing, int cost);
-  public boolean die(Thing thing);
-  public ArrayList<Thing> getNeighbors(Thing thing);
-  public void init();
-  public Dimensions getDimensions();
+  void setDatastore(Datastore datastore);
+  boolean die(Thing thing);
+  ArrayList<Thing> getNeighbors(Thing thing);
+  void init();
+  Dimensions getDimensions();
   void set(Point point, Thing thing);
-  public Thing createThing(Strand strand, Point location, int energy, int id);
+  Thing createThing(Strand strand, Point location, int energy);
 }

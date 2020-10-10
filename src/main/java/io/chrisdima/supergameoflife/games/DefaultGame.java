@@ -2,6 +2,7 @@ package io.chrisdima.supergameoflife.games;
 
 import io.chrisdima.supergameoflife.Thing;
 import io.chrisdima.supergameoflife.utils.Utils;
+import io.chrisdima.supergameoflife.worlds.WorldAPI;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -27,7 +28,7 @@ public class DefaultGame extends BaseGame {
       Set<Integer> keys = new TreeSet<Integer>(datastore.keys());
       for(Integer key : keys){
         System.out.println(datastore.get(key));
-        instructionSet.call((Thing)datastore.get(key), world);
+        instructionSet.call((Thing)datastore.get(key), (WorldAPI) world);
       }
       System.out.println(i);
     }

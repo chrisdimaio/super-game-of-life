@@ -2,6 +2,7 @@ package io.chrisdima.supergameoflife.instructionsets;
 
 import io.chrisdima.supergameoflife.Thing;
 import io.chrisdima.supergameoflife.worlds.World;
+import io.chrisdima.supergameoflife.worlds.WorldAPI;
 
 public interface InstructionSet {
   /**
@@ -11,5 +12,5 @@ public interface InstructionSet {
    */
   int indexingHash(int instruction);
 
-  void call(Thing thing, World world);
+  void call(Thing thing, WorldAPI worldAPI);
 }

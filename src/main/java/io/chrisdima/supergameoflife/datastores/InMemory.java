@@ -70,8 +70,8 @@ public class InMemory implements Datastore {
   }
 
   private int flattenAddress(Point point){
-    return point.getXInt() + dimensions.getWidth() * (point.getYInt() +
-        dimensions.getDepth() * point.getZInt());
+    return (int)point.getX() + dimensions.getWidth() * ((int)point.getY() +
+        dimensions.getDepth() * (int)point.getZ());
   }
 
   public void set(Thing thing) throws Exception{

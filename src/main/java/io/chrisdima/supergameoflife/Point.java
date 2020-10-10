@@ -8,20 +8,8 @@ public class Point extends Point3D {
     super(x, y, z);
   }
 
-  public int getXInt(){
-    return (int) this.getX();
-  }
-
-  public int getYInt(){
-    return (int) this.getY();
-  }
-
-  public int getZInt(){
-    return (int) this.getZ();
-  }
-
-  @Override
-  public String toString(){
-    return "{ x: " + getXInt() + ", y: " + getYInt() + ", z: " + getZInt() + " }";
-  }
+//  @Override
+//  public String toString(){
+//    return "{ x: " + getX() + ", y: " + getY() + ", z: " + getZ() + " }";
+//  }
 }
