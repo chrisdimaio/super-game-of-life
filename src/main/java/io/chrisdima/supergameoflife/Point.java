@@ -8,8 +8,8 @@ public class Point extends Point3D {
     super(x, y, z);
   }
 
-//  @Override
-//  public String toString(){
-//    return "{ x: " + getX() + ", y: " + getY() + ", z: " + getZ() + " }";
-//  }
+  @Override
+  public String toString(){
+    return "[x: " + getX() + ", y: " + getY() + ", z: " + getZ() + "]";
+  }
 }
