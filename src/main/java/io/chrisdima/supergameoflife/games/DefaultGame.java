@@ -18,20 +18,21 @@ public class DefaultGame extends BaseGame {
 
     for(int i = 0; i < world.getDimensions().getVolume(); i++)
       world.set(distributionStrategy.createSpot(world.getDimensions()),
-          Utils.getRandomThing(world, 1000));
+          Utils.getRandomThing(world, 10));
   }
 
   @Override
   public void play() {
-
-    for (int i = 0; i < 2; i++) {
+    runner();
+    int passes = 0;
+    while(running) {
       Set<Integer> keys = new TreeSet<Integer>(datastore.keys());
       for(Integer key : keys){
-        System.out.println(datastore.get(key));
         instructionSet.call((Thing)datastore.get(key), (WorldAPI) world);
       }
-      System.out.println(i);
+      passes++;
     }
+    System.out.println("passes: " + passes);
     System.out.println(world);
   }
 

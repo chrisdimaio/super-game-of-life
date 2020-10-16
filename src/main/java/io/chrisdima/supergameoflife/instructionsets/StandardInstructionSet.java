@@ -32,4 +32,13 @@ public class StandardInstructionSet extends BaseInstructionSet implements Instru
     Point locationB = new Point(locationA.getX(), locationA.getY(), locationA.getZ() + 1);
     worldAPI.move(locationA, locationB, thing, payload);
   }
+
+  @Instruction
+  public void duplicate(Thing parent, WorldAPI worldAPI, int payload) {
+    worldAPI.duplicate(parent,
+        new Point(
+            parent.getLocation().getX(),
+            parent.getLocation().getY(),
+            parent.getLocation().getZ() + 1));
+  }
 }

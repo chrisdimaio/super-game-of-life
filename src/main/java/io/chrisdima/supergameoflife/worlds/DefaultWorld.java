@@ -10,15 +10,15 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 public class DefaultWorld implements World, WorldAPI {
-  private static final int FIXED_COST = 100;
+  private static final int FIXED_COST = 1;
+  private static final int WORLD_NET_ENERGY = 1000000;
   private static final String WORLD_DATA_ENERGY = "energy";
   private Datastore datastore;
 
   @Override
   public void init(){
     verify(this);
-    datastore.setWorldData(WORLD_DATA_ENERGY, 100000);
-//    System.out.println("World initial energy: " + datastore.getWorldData(WORLD_DATA_ENERGY));
+    datastore.setWorldData(WORLD_DATA_ENERGY, WORLD_NET_ENERGY);
   }
 
   @Override
@@ -39,14 +39,23 @@ public class DefaultWorld implements World, WorldAPI {
   @Override
   public void move(Point from, Point to, Thing thing, int cost) {
     chargeFixedCost(thing);
-    accountForEnergy(thing, -cost);
-    datastore.move(from, to, thing);
+    accountForEnergy(thing, -1);
+    if(inBounds(to)) {
+      datastore.move(from, to, thing);
+    }
   }
 
   @Override
   public boolean die(Thing thing) {
     chargeFixedCost(thing);
     return false;
+  }
+
+  @Override
+  public void duplicate(Thing parent, Point childLocation) {
+    Thing child = newThing(parent.getStrand(), childLocation);
+    child.setGeneration(parent.getGeneration() + 1);
+    datastore.set(childLocation, child);
   }
 
   @Override
@@ -62,9 +71,20 @@ public class DefaultWorld implements World, WorldAPI {
 
   @Override
   public Thing createThing(Strand strand, Point location, int energy) {
-    Thing thing = new Thing(strand, location, UUID.randomUUID());
+    Thing thing = newThing(strand, location);
     accountForEnergy(thing, energy);
     return thing;
+  }
+
+  private boolean inBounds(Point point) {
+    return
+        point.getX() >= 0 && point.getX() <= getDimensions().getWidth() &&
+            point.getY() >= 0 && point.getY() <= getDimensions().getLength() &&
+            point.getZ() >= 0 && point.getZ() <= getDimensions().getDepth();
+  }
+
+  private Thing newThing(Strand strand, Point location) {
+    return new Thing(strand, location, UUID.randomUUID());
   }
 
   private void verify(World world){

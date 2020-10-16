@@ -4,7 +4,6 @@ import io.chrisdima.supergameoflife.Dimensions;
 import io.chrisdima.supergameoflife.Point;
 import io.chrisdima.supergameoflife.Thing;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Set;
 import lombok.Getter;
 

@@ -17,6 +17,10 @@ public class Thing {
   @Setter
   private Point location;
 
+  @Getter
+  @Setter
+  private int generation;
+
   public Thing(Strand strand, Point location, UUID id){
     this.strand = strand;
     this.location = location;
