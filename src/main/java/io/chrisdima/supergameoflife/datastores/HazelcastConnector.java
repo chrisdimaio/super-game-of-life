@@ -10,7 +10,7 @@ import java.util.Set;
 import lombok.Getter;
 
 public class HazelcastConnector implements Datastore {
-  HazelcastInstance hazelcast = Hazelcast.newHazelcastInstance();
+  private final HazelcastInstance hazelcast = Hazelcast.newHazelcastInstance();
 
   private final Map<Integer, Thing> buffer;
   private final Map<Object, Object> worldData;
