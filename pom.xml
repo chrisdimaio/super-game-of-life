@@ -31,5 +31,10 @@
             <artifactId>javafx-controls</artifactId>
             <version>14</version>
         </dependency>
+        <dependency>
+            <groupId>com.hazelcast</groupId>
+            <artifactId>hazelcast</artifactId>
+            <version>4.0.2</version>
+        </dependency>
     </dependencies>
 </project>

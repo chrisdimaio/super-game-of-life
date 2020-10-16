@@ -22,6 +22,27 @@ public class DefaultWorld implements World, WorldAPI {
   }
 
   @Override
+  public void move(Point from, Point to, Thing thing, int cost) {
+    chargeFixedCost(thing);
+    accountForEnergy(thing, -1);
+    if(inBounds(to)) {
+      datastore.move(from, to, thing);
+    }
+  }
+
+  @Override
+  public void die(Thing thing) {
+    chargeFixedCost(thing);
+  }
+
+  @Override
+  public void duplicate(Thing parent, Point childLocation) {
+    Thing child = newThing(parent.getStrand(), childLocation);
+    child.setGeneration(parent.getGeneration() + 1);
+    datastore.set(childLocation, child);
+  }
+
+  @Override
   public Dimensions getDimensions() {
     return datastore.getDimensions();
   }
@@ -34,28 +55,6 @@ public class DefaultWorld implements World, WorldAPI {
   @Override
   public void setDatastore(Datastore datastore) {
     this.datastore = datastore;
-  }
-
-  @Override
-  public void move(Point from, Point to, Thing thing, int cost) {
-    chargeFixedCost(thing);
-    accountForEnergy(thing, -1);
-    if(inBounds(to)) {
-      datastore.move(from, to, thing);
-    }
-  }
-
-  @Override
-  public boolean die(Thing thing) {
-    chargeFixedCost(thing);
-    return false;
-  }
-
-  @Override
-  public void duplicate(Thing parent, Point childLocation) {
-    Thing child = newThing(parent.getStrand(), childLocation);
-    child.setGeneration(parent.getGeneration() + 1);
-    datastore.set(childLocation, child);
   }
 
   @Override

@@ -17,4 +17,5 @@ public interface Datastore {
   Object getWorldData(Object key);
   void setWorldData(Object key, Object value);
   public void move(Point from, Point to, Thing thing);
+  public void shutdown();
 }

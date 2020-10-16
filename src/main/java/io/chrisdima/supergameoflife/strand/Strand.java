@@ -1,8 +1,9 @@
 package io.chrisdima.supergameoflife.strand;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
-public class Strand {
+public class Strand implements Serializable {
   private final Segment[] strand;
 
   private int index = 0;

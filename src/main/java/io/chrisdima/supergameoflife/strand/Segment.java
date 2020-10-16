@@ -1,9 +1,10 @@
 package io.chrisdima.supergameoflife.strand;
 
+import java.io.Serializable;
 import lombok.Getter;
 
 @Getter
-public class Segment {
+public class Segment implements Serializable {
   final int instruction;
   final int payload;
 

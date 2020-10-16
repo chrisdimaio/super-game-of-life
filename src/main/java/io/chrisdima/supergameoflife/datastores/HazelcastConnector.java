@@ -1,24 +1,27 @@
 package io.chrisdima.supergameoflife.datastores;
 
+import com.hazelcast.core.Hazelcast;
+import com.hazelcast.core.HazelcastInstance;
 import io.chrisdima.supergameoflife.Dimensions;
 import io.chrisdima.supergameoflife.Point;
 import io.chrisdima.supergameoflife.Thing;
-import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 import lombok.Getter;
 
-public class InMemory implements Datastore {
-  private final HashMap<Integer, Thing> buffer;
-  private final HashMap<Object, Object> worldData;
+public class HazelcastConnector implements Datastore {
+  HazelcastInstance hazelcast = Hazelcast.newHazelcastInstance();
+
+  private final Map<Integer, Thing> buffer;
+  private final Map<Object, Object> worldData;
 
   @Getter
   private final Dimensions dimensions;
 
-  public InMemory(Dimensions dimensions){
+  public HazelcastConnector(Dimensions dimensions){
     this.dimensions = dimensions;
-    this.buffer = new HashMap<>(dimensions.getLength() * dimensions.getWidth() *
-        dimensions.getDepth());
-    this.worldData = new HashMap<>();
+    this.buffer = hazelcast.getMap("buffer");
+    this.worldData = hazelcast.getMap("worldData");
   }
 
   @Override
@@ -69,7 +72,9 @@ public class InMemory implements Datastore {
   }
 
   @Override
-  public void shutdown(){}
+  public void shutdown() {
+    hazelcast.getLifecycleService().shutdown();
+  }
 
   private int flattenAddress(Point point){
     return (int)point.getX() + dimensions.getWidth() * ((int)point.getY() +

@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 public interface World {
   void setDatastore(Datastore datastore);
-  boolean die(Thing thing);
   ArrayList<Thing> getNeighbors(Thing thing);
   void init();
   Dimensions getDimensions();

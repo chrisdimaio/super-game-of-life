@@ -4,7 +4,7 @@ import io.chrisdima.supergameoflife.Point;
 import io.chrisdima.supergameoflife.Thing;
 
 public interface WorldAPI {
-  boolean die(Thing thing);
+  void die(Thing thing);
   void duplicate(Thing parent, Point childLocation);
   void move(Point from, Point to, Thing thing, int cost);
 }

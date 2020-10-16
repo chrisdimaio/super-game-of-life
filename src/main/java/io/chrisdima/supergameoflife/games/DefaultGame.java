@@ -32,6 +32,7 @@ public class DefaultGame extends BaseGame {
       }
       passes++;
     }
+    datastore.shutdown();
     System.out.println("passes: " + passes);
     System.out.println(world);
   }

@@ -1,12 +1,13 @@
 package io.chrisdima.supergameoflife;
 
 import io.chrisdima.supergameoflife.strand.Strand;
+import java.io.Serializable;
 import java.util.UUID;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
-public class Thing {
+public class Thing implements Serializable {
   private final Strand strand;
 
   @Setter

@@ -1,11 +1,18 @@
 package io.chrisdima.supergameoflife;
 
-import javafx.geometry.Point3D;
+import java.io.Serializable;
+import lombok.Getter;
+import lombok.Setter;
 
-public class Point extends Point3D {
+public class Point implements Serializable {
+  @Getter
+  @Setter
+  double x,y,z;
 
   public Point(double x, double y, double z) {
-    super(x, y, z);
+    this.x = x;
+    this.y = y;
+    this.z = z;
   }
 
   @Override
