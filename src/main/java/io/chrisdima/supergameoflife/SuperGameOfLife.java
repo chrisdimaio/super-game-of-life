@@ -12,7 +12,7 @@ public class SuperGameOfLife {
   public static void main(String[] args) throws Exception {
     DefaultGame game = new DefaultGame();
     game.setWorld(new DefaultWorld());
-    game.setDatastore(new HazelcastConnector(new Dimensions(1, 1, 10)));
+    game.setDatastore(new HazelcastConnector(new Dimensions(10, 10, 1)));
 
     game.setDistributionStrategy(new DefaultStrategy());
     game.setInstructionSet(new StandardInstructionSet());

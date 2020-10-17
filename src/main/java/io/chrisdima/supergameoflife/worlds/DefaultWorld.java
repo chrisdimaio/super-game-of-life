@@ -60,6 +60,16 @@ public class DefaultWorld implements World, WorldAPI {
   }
 
   @Override
+  public Thing get(Point point) {
+    return (Thing)datastore.get(point);
+  }
+
+  @Override
+  public boolean exists(Point point) {
+    return datastore.exists(point);
+  }
+
+  @Override
   public void setDatastore(Datastore datastore) {
     this.datastore = datastore;
   }

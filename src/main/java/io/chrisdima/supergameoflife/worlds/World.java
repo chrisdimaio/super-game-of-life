@@ -13,5 +13,7 @@ public interface World {
   void init();
   Dimensions getDimensions();
   void set(Point point, Thing thing);
+  Thing get(Point point);
+  boolean exists(Point point);
   Thing createThing(Strand strand, Point location, int energy);
 }
