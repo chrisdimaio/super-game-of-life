@@ -27,6 +27,15 @@ public class StandardInstructionSet extends BaseInstructionSet implements Instru
   }
 
   @Instruction
+  public void eat(Thing thing, WorldAPI worldAPI, int payload) {
+    Point spot = thing.getLocation();
+    spot.setZ(thing.getLocation().getZ() + 1);
+    if(worldAPI.isOccupied(spot, thing, 2)) {
+      System.out.println("I might eat this: " + spot);
+    }
+  }
+
+  @Instruction
   public void move(Thing thing, WorldAPI worldAPI, int payload) {
     Point locationA = thing.getLocation();
     Point locationB = new Point(locationA.getX(), locationA.getY(), locationA.getZ() + 1);

@@ -22,6 +22,13 @@ public class DefaultWorld implements World, WorldAPI {
   }
 
   @Override
+  public boolean isOccupied(Point spot, Thing thing, int cost) {
+    chargeFixedCost(thing);
+    accountForEnergy(thing, -cost);
+    return datastore.exists(spot);
+  }
+
+  @Override
   public void move(Point from, Point to, Thing thing, int cost) {
     chargeFixedCost(thing);
     accountForEnergy(thing, -1);
